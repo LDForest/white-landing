@@ -16,8 +16,13 @@ const buffer =       require('vinyl-buffer')
 const del =          require('del');
 const beautify =     require('gulp-jsbeautifier');
 const emit =         require("emit");
+const svgSprite  =   require('gulp-svg-sprite');
+const svgmin =       require('gulp-svgmin');
+const imagemin =     require('gulp-imagemin');
+const chokidar =     require('chokidar');
 
 const paths = {
+  bundleFolder: './public',
   styles: {
     sassPath: './sass',
     destPath: './public/stylesheets',
@@ -30,6 +35,11 @@ const paths = {
   pug: {
     inputPath: './pug',
     outputPath: './public/html'
+  },
+  images: {
+    inputPath: './source_images',
+    inputSvg: './source_images/svg',
+    outputPath: './public/images'
   }
 }
 
@@ -56,11 +66,11 @@ gulp.task('bundle', () => {
 
 //delete task for clear trash
 gulp.task('del',() => {
-  del([paths.styles.maps], {force: true});
+  del(`${paths.bundleFolder}/*`, {force: true});
 });
 
 //start server
-gulp.task('browser-sync', ['sass','pug','bundle'], () => {
+gulp.task('browser-sync', ['sass','pug','bundle','img-min','svg-sprites'], () => {
   browserSync.init({
     server: {
       baseDir: "./"
@@ -68,12 +78,18 @@ gulp.task('browser-sync', ['sass','pug','bundle'], () => {
   });
 
   gulp.watch([`${paths.styles.sassPath}/**/*[^_].scss`, `${paths.styles.sassPath}/**/*[^_].css`], ['sass']);
-  gulp.watch([`${paths.pug.inputPath}/*.pug`, `${paths.pug.inputPath}/*.html`], ['pug']);
+  gulp.watch([`${paths.pug.inputPath}/**/*.pug`, `${paths.pug.inputPath}/*.html`], ['pug']);
   gulp.watch(`${paths.pug.outputPath}/**/*.html`).on('change', browserSync.reload);
   gulp.watch(`${paths.js.outputPath}/**/*.js`).on('change', browserSync.reload);
 
-});
+  chokidar.watch(`${paths.images.inputSvg}/*.svg`)
+    .on('add', () => {gulp.run('svg-sprites');})
+    .on('unlink', () => {gulp.run('svg-sprites');})
 
+  chokidar.watch(`${paths.images.inputPath}/**/*.{png,jpg,jpeg,gif}`)
+    .on('add', () => {gulp.run('img-min');})
+    .on('unlink', () => {gulp.run('img-min');});
+});
 
 //style sass compile
 gulp.task('sass', () => {
@@ -90,8 +106,30 @@ gulp.task('sass', () => {
       .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+//svg sprites
+gulp.task('svg-sprites', () => {
+   gulp.src(`${paths.images.inputSvg}/*.svg`)
+    .pipe(svgmin()).on('error', (err) => {console.log(err)})
+    .pipe(svgSprite({
+       mode: {
+        symbol: true
+      }
+    }))
+    .pipe(gulp.dest('./pug/includes'));  
+});
 
-//function for js 
+//image optimizate
+gulp.task('img-min', () =>
+    gulp.src(`${paths.images.inputPath}/*.{png,jpeg,jpg,gif}`)
+        .pipe(imagemin({
+          interlaced: true,
+          progressive: true,
+          optimizationLevel: 5
+        }))
+        .pipe(gulp.dest(`${paths.images.outputPath}`))
+);
+
+//function for js compile
 function jsCreateCompile(debug, production){
 
   return function(file){
@@ -138,7 +176,6 @@ function handleError(err) {
   this.emit('end');
 }
 
-let tasks = ['browser-sync'];
-if( production ) tasks.push('del');
+let tasks = ['del','browser-sync'];
 
 gulp.task('default',tasks);
