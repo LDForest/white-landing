@@ -9,6 +9,6 @@ Starting kit with
 
 ## used in Projects:
 
-| Plugin | README |
+| name | repo |
 | ------ | ------ |
 | Surf-landing | https://github.com/Aloving/surf-landing |
