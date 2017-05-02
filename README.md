@@ -7,8 +7,8 @@ Starting kit with
   - pug(jade)
   - es6(babel)
 
-##used in Projects:
+## used in Projects:
 
 | Plugin | README |
 | ------ | ------ |
-| Surf-landing | [https://github.com/Aloving/surf-landing] [PlSl] |
+| Surf-landing | https://github.com/Aloving/surf-landing |
