@@ -1,2 +1,7 @@
 # startGulpKit
-Starting kit with gulp + browserify + sass + es6(babel)
+Starting kit with:
+*gulp
+*browserify
+*sass
+*pug(jade)
+*es6(babel)
