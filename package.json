@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.22.0",
@@ -32,8 +32,26 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
   },
-  "browser": {},
-  "browserify-shim": {},
+  "browser": {
+    "jquery": "./js/deps/jquery.min.js",
+    "bootstrap": "./js/deps/bootstrap.min.js",
+    "owl-carousel": "./js/deps/owl.carousel.min.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "bootstrap": {
+      "exports": "bootstrap",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+     "owl-carousel": {
+      "exports": "owlCarousel",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
   "browserify": {
     "transform": [
       "browserify-shim",
@@ -48,7 +66,8 @@
     ]
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0"
+    "babel-polyfill": "^6.23.0",
+    "bootstrap": "^3.3.7"
   },
   "repository": {
     "type": "git",

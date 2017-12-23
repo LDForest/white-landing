@@ -1,0 +1,61 @@
+.header {
+	padding-top: 30px;
+	&__logo {
+		height: auto;
+		padding: 0;
+	}
+}
+.menu-container{
+	float: right;
+	padding-top: 10px;
+	padding-right: 0;
+}
+.menu {
+	display: inline-block;
+	&__link {
+		color: #435059;
+		font-family: $raleway;
+		font-weight: 700;
+		font-size: 12px;
+		letter-spacing: 1px;
+		transition: 0.3s;
+		&:hover,
+		&:focus {
+			color: #000;
+		}
+	}
+	&__number {
+		font-family: $OpenSans;
+		font-weight: 800;
+		color: #435059;
+		padding-right: 20px;
+	}
+	&__dropdown {
+		border: none;
+		background: rgba(249, 250, 249, 0.55);
+		padding: 10px 15px;
+		// opacity: 0;
+	}
+}
+
+.dropdown .dropdown-menu {
+	right: 0;
+	left: auto;
+	display: block;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.2s ase;
+	-moz-transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+	visibility: visible;
+	opacity: 1;
+}
+
+.dropdown {
+	display: inline-block;
+}

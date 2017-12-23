@@ -1,0 +1,23 @@
+mixin slides(name, typefood, appraisal, price, oldPrice, image)
+	.slides__item
+		.slides__container
+			.slides__name=name
+			.slides__container-text
+				.slides__typefood=typefood
+				.slides__appraisal=appraisal
+			if oldPrice
+				.slides__old= "$" + oldPrice
+				.slides__price= "$" + price
+			button.food-plan__button.btn.btn-default(type="submit")
+				img.food-plan__button-icon(src="../images/IconBox.png")
+				span.food-plan__button-span.text-uppercase ORDER NOW
+		img.food-plan__button-img(src=image)
+
+
+
+.food-slider
+	.food-slider__container.owl-carousel
+		+slides("Parma Ham", "Italian Food", "8.0/10", "30", "../images/Layer1.png" )
+		+slides("Massaman Curry", "Thailand Food", "8.0/10", "20", "../images/Layer2.png" )
+		+slides("Stinky Tofu", "Southeast Asia", "8.0/10", "20", "../images/Layer3.png")
+		+slides("Parma Ham", "Italian Food", "8.0/10", "30", "../images/Layer4.png" )

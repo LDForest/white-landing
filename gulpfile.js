@@ -46,7 +46,9 @@ const paths = {
 //pug preproc
 gulp.task('pug', () => {
   gulp.src(`${paths.pug.inputPath}/*.pug`)
-      .pipe(pug())
+      .pipe(
+        pug().on('error', handleError)
+      )
       .pipe(gulp.dest(`${paths.pug.outputPath}`))
 });
 
@@ -176,6 +178,6 @@ function handleError(err) {
   this.emit('end');
 }
 
-let tasks = ['del','browser-sync'];
+let tasks = ['browser-sync'];
 
 gulp.task('default',tasks);

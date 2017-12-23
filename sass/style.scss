@@ -1,4 +1,11 @@
 @import 'helpers/variables';
 @import 'helpers/mixins';
+@import 'helpers/layouts';
 @import 'helpers';
+@import 'libs';
+@import 'helpers/bootstrap-custom';
 @import 'blocks';
+.header{
+	background: url('../images/Bg.png') no-repeat;
+	background-size: 100% auto;
+}

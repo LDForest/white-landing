@@ -1,0 +1,27 @@
+.row
+	.col-md-12
+		nav.navbar
+			.navbar-header
+				button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				//- a.navbar-brand(href="#")
+				img.navbar-brand.header__logo(src="../images/logo.png")
+			.navbar-collapse.collapse.menu-container
+					ul.nav.navbar-nav.navbar.menu
+						li.menu__item.active
+							a.menu__link.text-uppercase(href="#") Pricing
+						li.menu__item
+							a.menu__link.text-uppercase(href="#") Handpicked
+						li.menu__item
+							a.menu__link.text-uppercase(href="#") Blog
+					a.menu__number.text-uppercase(href="#") +628 135 142 121
+					.dropdown.dropdown-right
+							a.dropdown-toggle(data-toggle="dropdown" href="#")
+								img(src="../images/menu.png")
+							ul.dropdown-menu.menu__dropdown
+								li.menu__down-item
+									a.text-uppercase.menu__link(href="#") Lorem 
+								li.menu__down-item
+									a.text-uppercase.menu__link(href="#") ipsum
