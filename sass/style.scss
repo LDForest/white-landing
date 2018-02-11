@@ -1,3 +1,4 @@
+@import 'libs/owlCarousel/owl.carousel';
 @import 'helpers/variables';
 @import 'helpers/mixins';
 @import 'helpers/layouts';
@@ -8,4 +9,25 @@
 .header{
 	background: url('../images/Bg.png') no-repeat;
 	background-size: 100% auto;
+}
+
+
+.slides__item{
+	background: rgb(201, 194, 194);
+	width: 361px;
+	&:after{
+		content: '';
+		display: table;
+		clear: both;
+	}
+	img.food-plan__image{
+		width: 80px;
+		height: 264px;
+		float: right;
+	}
+	
+}
+
+.food-slider__container{
+	width: 100%;
 }

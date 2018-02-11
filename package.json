@@ -34,18 +34,11 @@
   },
   "browser": {
     "jquery": "./js/deps/jquery.min.js",
-    "bootstrap": "./js/deps/bootstrap.min.js",
     "owl-carousel": "./js/deps/owl.carousel.min.js"
   },
   "browserify-shim": {
     "jquery": "$",
-    "bootstrap": {
-      "exports": "bootstrap",
-      "depends": [
-        "jquery:jQuery"
-      ]
-    },
-     "owl-carousel": {
+    "owl-carousel": {
       "exports": "owlCarousel",
       "depends": [
         "jquery:jQuery"
@@ -66,8 +59,7 @@
     ]
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "bootstrap": "^3.3.7"
+    "babel-polyfill": "^6.23.0"
   },
   "repository": {
     "type": "git",

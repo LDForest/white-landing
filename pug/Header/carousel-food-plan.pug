@@ -1,4 +1,4 @@
-mixin slides(name, typefood, appraisal, price, oldPrice, image)
+mixin slides(name, typefood, appraisal, price, image)
 	.slides__item
 		.slides__container
 			.slides__name=name
@@ -11,7 +11,7 @@ mixin slides(name, typefood, appraisal, price, oldPrice, image)
 			button.food-plan__button.btn.btn-default(type="submit")
 				img.food-plan__button-icon(src="../images/IconBox.png")
 				span.food-plan__button-span.text-uppercase ORDER NOW
-		img.food-plan__button-img(src=image)
+		img(src=image).food-plan__image
 
 
 
